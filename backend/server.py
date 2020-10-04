@@ -45,7 +45,8 @@ def getwords(img):
 	FilteredList = re.findall(".*\.[0-9]{2}\n", UnfilteredString)
 	print(FilteredList)
 	for n, entry in enumerate(FilteredList):
-		FilteredList[n] = re.sub("\$.+\n", "", entry)
+		FilteredList[n] = re.sub("[^a-zA-Z]+[0-9][0-9]\n", "", entry)
+		FilteredList[n] = re.sub("\$","",FilteredList[n])
 		print(FilteredList[n])
 	return(FilteredList)
 
