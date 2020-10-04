@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h3>
-          Upload a photo of your receipt!
+          Upload a photo of your grocery receipt! And we will keep track of your inventory
         </h3>
         <form method="post" encType="multipart/form-data">
 			<input type="file" name="file" id="file"></input>
