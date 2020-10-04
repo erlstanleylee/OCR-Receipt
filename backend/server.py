@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, jsonify, render_template
 app = Flask(__name__)
 
 import time
@@ -47,18 +47,23 @@ def getwords(img):
 	for n, entry in enumerate(FilteredList):
 		FilteredList[n] = re.sub("\$.+\n", "", entry)
 		print(FilteredList[n])
+	return(FilteredList)
 
 
 @app.route('/', methods=['GET','POST'])
 def fp():
     if request.method == 'POST':
         img = request.files['file']
-        getwords(img)
-        return redirect(url_for('hello'))
+        filtereditems = getwords(img)
+        itemstring = '\n'.join(filtereditems)
+        return redirect(url_for('data', items = itemstring))
 		
-@app.route('/hello')
-def hello():
-	return('hello world')
+@app.route('/data')
+def data():
+	items = request.args.get('items')
+	print(items)
+	items = items.split('\n')
+	return render_template('display.html', items=items)
 
 
 

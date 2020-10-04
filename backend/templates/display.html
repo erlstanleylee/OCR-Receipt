@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+	<body>
+		<main>
+		{% block main %}
+		<h1> Items from receipt! </h1>
+		<ul>
+			{% for x in items %}
+			<li>{{x}}</li>
+			{% endfor %}
+		</ul>
+		</main>
+		{% endblock %}
+	</body>
+</html>
